@@ -1,9 +1,8 @@
-version: 5.0.{build}
-
-image:
-- Visual Studio 2015
-
-branches: develop
-
+version: 9.0.{build}
+branches:
+  only:
+  - develop
+skip_tags: true
+image: Visual Studio 2015
 build:
-  verbosity: minimal
+  verbosity: detailed

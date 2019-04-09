@@ -1,7 +1,10 @@
 version: 5.0.{build}
+
 image:
 - Visual Studio 2015
+
 branches:
 - develop
+
 build:
   verbosity: minimal

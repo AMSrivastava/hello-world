@@ -7,3 +7,6 @@ image: Visual Studio 2017
 build:
   verbosity: minimal
 clone_folder: c:\dev\examples
+before_build:
+- cd c:\dev\examples
+- md build

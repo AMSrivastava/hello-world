@@ -95,7 +95,7 @@ sub end($) {
 
 print "Outside end\n";
 $date = sprintf($format, $d[4] + 1, $d[3], $d[5] + 1900, $d[2], $d[1], $d[0]);
-unlink(glob("$logdir\\$branch*"));
+# unlink(glob("$logdir\\$branch*"));
 
 print "unlink(glob  done\n";
 # redirect stdio and disable buffering
@@ -105,7 +105,7 @@ print "opened oldout\n";
 open($olderr, ">&STDERR");
 print "opened olderr\n";
 print "Build $logdir\\$branch-build.log\n";
-# open(STDOUT, '>', "$logdir\\$branch-build.log");
+open(STDOUT, '>', "$logdir\\$branch-build.log");
 print "opened stdout\n";
 open(STDERR, ">&STDOUT");
 select STDOUT; $| = 1;

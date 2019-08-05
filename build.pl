@@ -33,10 +33,15 @@ else{
 print "Build will include '" . $buildWhat . "' module only\n";
 }
 
+print "The SOURCEPATH is '" . $base . "'\n";
 
 my $base = $ENV{"SOURCEPATH"};
 my $logdir = $ENV{"LOGPATH"};
 my $src = "$base";
+
+print "The SOURCEPATH is '" . $base . "'\n";
+print "The LOGPATH is '" . $logdir . "'\n";
+print "The src is '" . $src . "'\n";
 
 if (-f "$src\\.lock") {
 	print "Error: Build in progress\n";

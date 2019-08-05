@@ -33,13 +33,10 @@ else{
 print "Build will include '" . $buildWhat . "' module only\n";
 }
 
-my $basesrcpath = $ENV{"SOURCEPATH"};
-my $logdir = $ENV{"LOGPATH"};
-my $src = "$basesrcpath";
 
-print "The SOURCEPATH is '" . $basesrcpath . "'\n";
-print "The LOGPATH is '" . $logdir . "'\n";
-print "The src is '" . $src . "'\n";
+my $base = $ENV{"SOURCEPATH"};
+my $logdir = $ENV{"LOGPATH"};
+my $src = "$base";
 
 if (-f "$src\\.lock") {
 	print "Error: Build in progress\n";
@@ -47,29 +44,19 @@ if (-f "$src\\.lock") {
 }
 
 
-my $oldout;
-my $olderr;
-
 my $format = "%02d/%02d/%d %02d:%02d:%02d";
 my $start = time();
 
 my @d = localtime();
 my $date = sprintf("%d%02d%02d%02d%02d%02d", $d[5] + 1900, $d[4] + 1, $d[3], $d[2], $d[1], $d[0]);
 
-print "Above doCmd\n";
 sub doCmd {
-	print "Inside doCmd\n";
 	my $cmdLine = shift(@_);
-	
-	print "the cmdLine \n";
 	print "$cmdLine\n";
 	return system($cmdLine);
 }
 
-print "Outside doCmd\n";
-
 sub end($) {
-	print "inside end\n";
 	my $err = shift(@_);
 	my @d = localtime();
 	my $date = sprintf($format, $d[4] + 1, $d[3], $d[5] + 1900, $d[2], $d[1],
@@ -80,37 +67,15 @@ sub end($) {
     if ($err) {
 		print "Build failed: $err\n";
 	}
-	
-	print "bild branch1\n";
-	
 	print "Build $branch ended $date: $time minutes\n";
-	print "open STDOUT\n";
-	open(STDOUT, ">&", $oldout);
-	print "open STDERR\n";
-	open(STDERR, ">&", $olderr);
-	print "bild branch2\n";
 	print "Build $branch ended $date: $time minutes\n";
 	exit($err ? 1 : 0);
 }
 
-print "Outside end\n";
 $date = sprintf($format, $d[4] + 1, $d[3], $d[5] + 1900, $d[2], $d[1], $d[0]);
-# unlink(glob("$logdir\\$branch*"));
+unlink(glob("$logdir\\$branch*"));
 
-print "unlink(glob  done\n";
 # redirect stdio and disable buffering
-print "opening oldout\n";
-open($oldout, ">&STDOUT");
-print "opened oldout\n";
-open($olderr, ">&STDERR");
-print "opened olderr\n";
-print "Build $logdir\\$branch-build.log\n";
-open(STDOUT, '>', "$logdir\\$branch-build.log") || die "Can't open log file";
-
-print "opened stdout\n";
-open(STDERR, ">&STDOUT");
-select STDOUT; $| = 1;
-select STDERR; $| = 1;
 
 print "Build $branch started $date\n";
 
@@ -122,6 +87,4 @@ mkdir($logdir);
 if (doCmd("call $src\\winbuild.pl $branch $buildWhat")) {
 	end("winbuild failed");
 }
-
-print "calling end0";
 end(0);

@@ -57,7 +57,10 @@ my @d = localtime();
 my $date = sprintf("%d%02d%02d%02d%02d%02d", $d[5] + 1900, $d[4] + 1, $d[3], $d[2], $d[1], $d[0]);
 
 sub doCmd {
+	print "Inside doCmd\n";
 	my $cmdLine = shift(@_);
+	
+	print "the cmdLine \n";
 	print "$cmdLine\n";
 	return system($cmdLine);
 }

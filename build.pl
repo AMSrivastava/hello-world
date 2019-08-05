@@ -93,9 +93,11 @@ sub end($) {
 	exit($err ? 1 : 0);
 }
 
+print "Outside end\n";
 $date = sprintf($format, $d[4] + 1, $d[3], $d[5] + 1900, $d[2], $d[1], $d[0]);
 unlink(glob("$logdir\\$branch*"));
 
+print "unlink(glob  done\n";
 # redirect stdio and disable buffering
 open($oldout, ">&STDOUT");
 open($olderr, ">&STDERR");

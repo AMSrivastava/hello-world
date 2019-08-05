@@ -105,7 +105,8 @@ print "opened oldout\n";
 open($olderr, ">&STDERR");
 print "opened olderr\n";
 print "Build $logdir\\$branch-build.log\n";
-open(STDOUT, '>', "$logdir\\$branch-build.log");
+open(STDOUT, '>', "$logdir\\$branch-build.log") || die "Can't open log file";
+
 print "opened stdout\n";
 open(STDERR, ">&STDOUT");
 select STDOUT; $| = 1;

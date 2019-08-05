@@ -35,11 +35,11 @@ print "Build will include '" . $buildWhat . "' module only\n";
 
 print "The SOURCEPATH is '" . $base . "'\n";
 
-my $base = $ENV{"SOURCEPATH"};
+my $basesrcpath = $ENV{"SOURCEPATH"};
 my $logdir = $ENV{"LOGPATH"};
-my $src = "$base";
+my $src = "$basesrcpath";
 
-print "The SOURCEPATH is '" . $base . "'\n";
+print "The SOURCEPATH is '" . $basesrcpath . "'\n";
 print "The LOGPATH is '" . $logdir . "'\n";
 print "The src is '" . $src . "'\n";
 

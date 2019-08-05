@@ -114,4 +114,6 @@ mkdir($logdir);
 if (doCmd("call $src\\winbuild.pl $branch $buildWhat")) {
 	end("winbuild failed");
 }
+
+print "calling end0";
 end(0);

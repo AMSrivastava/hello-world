@@ -99,9 +99,12 @@ unlink(glob("$logdir\\$branch*"));
 
 print "unlink(glob  done\n";
 # redirect stdio and disable buffering
+print "opening oldout\n";
 open($oldout, ">&STDOUT");
+print "opened oldout\n";
 open($olderr, ">&STDERR");
 open(STDOUT, '>', "$logdir\\$branch-build.log");
+print "opened stdout\n";
 open(STDERR, ">&STDOUT");
 select STDOUT; $| = 1;
 select STDERR; $| = 1;

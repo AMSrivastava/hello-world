@@ -56,6 +56,7 @@ my $start = time();
 my @d = localtime();
 my $date = sprintf("%d%02d%02d%02d%02d%02d", $d[5] + 1900, $d[4] + 1, $d[3], $d[2], $d[1], $d[0]);
 
+print "Above doCmd\n";
 sub doCmd {
 	print "Inside doCmd\n";
 	my $cmdLine = shift(@_);
@@ -65,7 +66,10 @@ sub doCmd {
 	return system($cmdLine);
 }
 
+print "Outside doCmd\n";
+
 sub end($) {
+	print "inside end\n";
 	my $err = shift(@_);
 	my @d = localtime();
 	my $date = sprintf($format, $d[4] + 1, $d[3], $d[5] + 1900, $d[2], $d[1],
@@ -76,9 +80,15 @@ sub end($) {
     if ($err) {
 		print "Build failed: $err\n";
 	}
+	
+	print "bild branch1\n";
+	
 	print "Build $branch ended $date: $time minutes\n";
+	print "open STDOUT\n";
 	open(STDOUT, ">&", $oldout);
+	print "open STDERR\n";
 	open(STDERR, ">&", $olderr);
+	print "bild branch2\n";
 	print "Build $branch ended $date: $time minutes\n";
 	exit($err ? 1 : 0);
 }

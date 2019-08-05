@@ -103,6 +103,7 @@ print "opening oldout\n";
 open($oldout, ">&STDOUT");
 print "opened oldout\n";
 open($olderr, ">&STDERR");
+print "opened olderr\n";
 open(STDOUT, '>', "$logdir\\$branch-build.log");
 print "opened stdout\n";
 open(STDERR, ">&STDOUT");

@@ -33,8 +33,6 @@ else{
 print "Build will include '" . $buildWhat . "' module only\n";
 }
 
-print "The SOURCEPATH is '" . $base . "'\n";
-
 my $basesrcpath = $ENV{"SOURCEPATH"};
 my $logdir = $ENV{"LOGPATH"};
 my $src = "$basesrcpath";
